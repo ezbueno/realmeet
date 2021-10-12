@@ -7,9 +7,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import br.com.sw2you.realmeet.api.facade.AllocationApi;
 import br.com.sw2you.realmeet.core.BaseIntegrationTest;
+import br.com.sw2you.realmeet.domain.entity.Allocation;
 import br.com.sw2you.realmeet.domain.repository.AllocationRepository;
 import br.com.sw2you.realmeet.domain.repository.RoomRepository;
 import java.net.MalformedURLException;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -126,5 +130,23 @@ class AllocationApiFilterIntegrationTest extends BaseIntegrationTest {
         assertEquals(2, allocationDTOList.size());
         assertEquals(allocation1.getId(), allocationDTOList.get(0).getId());
         assertEquals(allocation2.getId(), allocationDTOList.get(1).getId());
+    }
+
+    private List<Allocation> persistAllocations(int numberOfAllocations) {
+        var room = newRoomBuilder().build();
+
+        return IntStream
+            .range(0, 10)
+            .mapToObj(
+                i ->
+                    this.allocationRepository.saveAndFlush(
+                            newAllocationBuilder(room)
+                                .subject(DEFAULT_ALLOCATION_SUBJECT + "_" + (i + 1))
+                                .startAt(DEFAULT_ALLOCATION_START_AT.plusHours(i + 1))
+                                .endAt(DEFAULT_ALLOCATION_END_AT.plusHours(i + 1))
+                                .build()
+                        )
+            )
+            .collect(Collectors.toList());
     }
 }
