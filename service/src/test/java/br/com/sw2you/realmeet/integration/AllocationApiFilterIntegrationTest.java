@@ -46,7 +46,7 @@ class AllocationApiFilterIntegrationTest extends BaseIntegrationTest {
                     newAllocationBuilder(room).subject(DEFAULT_ALLOCATION_SUBJECT + 3).build()
                 );
 
-        var allocationDTOList = this.allocationApi.listAllocations(null, null, null, null, null, null);
+        var allocationDTOList = this.allocationApi.listAllocations(null, null, null, null, null, null, null);
 
         assertEquals(3, allocationDTOList.size());
         assertEquals(allocation1.getSubject(), allocationDTOList.get(0).getSubject());
@@ -63,7 +63,7 @@ class AllocationApiFilterIntegrationTest extends BaseIntegrationTest {
         var allocation2 = this.allocationRepository.saveAndFlush(newAllocationBuilder(roomA).build());
         this.allocationRepository.saveAndFlush(newAllocationBuilder(roomB).build());
 
-        var allocationDTOList = this.allocationApi.listAllocations(null, roomA.getId(), null, null, null, null);
+        var allocationDTOList = this.allocationApi.listAllocations(null, roomA.getId(), null, null, null, null, null);
 
         assertEquals(2, allocationDTOList.size());
         assertEquals(allocation1.getId(), allocationDTOList.get(0).getId());
@@ -82,7 +82,8 @@ class AllocationApiFilterIntegrationTest extends BaseIntegrationTest {
             this.allocationRepository.saveAndFlush(newAllocationBuilder(room).employee(employee1).build());
         this.allocationRepository.saveAndFlush(newAllocationBuilder(room).employee(employee2).build());
 
-        var allocationDTOList = this.allocationApi.listAllocations(employee1.getEmail(), null, null, null, null, null);
+        var allocationDTOList =
+            this.allocationApi.listAllocations(employee1.getEmail(), null, null, null, null, null, null);
 
         assertEquals(2, allocationDTOList.size());
         assertEquals(allocation1.getId(), allocationDTOList.get(0).getId());
@@ -117,6 +118,7 @@ class AllocationApiFilterIntegrationTest extends BaseIntegrationTest {
                     null,
                     baseStartAt.toLocalDate(),
                     baseEndAt.toLocalDate(),
+                    null,
                     null,
                     null
                 );

@@ -52,12 +52,14 @@ public class AllocationController implements AllocationsApi {
         String employeeEmail,
         Long roomId,
         LocalDate startAt,
-        LocalDate endtAt,
+        LocalDate endAt,
         String orderBy,
-        Integer limit
+        Integer limit,
+        Integer page
     ) {
         return supplyAsync(
-                () -> this.allocationService.listAllocations(employeeEmail, roomId, startAt, endtAt, orderBy, limit),
+                () ->
+                    this.allocationService.listAllocations(employeeEmail, roomId, startAt, endAt, orderBy, limit, page),
                 this.controllersExecutor
             )
             .thenApply(ResponseEntityUtils::ok);

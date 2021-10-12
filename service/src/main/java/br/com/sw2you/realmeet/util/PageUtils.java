@@ -1,16 +1,15 @@
 package br.com.sw2you.realmeet.util;
 
+import static java.util.Objects.isNull;
+
 import br.com.sw2you.realmeet.exception.InvalidOrderByFieldException;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import static java.util.Objects.isNull;
 
 public final class PageUtils {
 
@@ -38,8 +37,10 @@ public final class PageUtils {
             return Sort.unsorted();
         }
 
-        var orderList =
-                Stream.of(orderBy.split(",")).map(f -> {
+        var orderList = Stream
+            .of(orderBy.split(","))
+            .map(
+                f -> {
                     String fieldName;
                     Sort.Order order;
 
@@ -56,7 +57,8 @@ public final class PageUtils {
                     }
                     return order;
                 }
-                ).collect(Collectors.toList());
+            )
+            .collect(Collectors.toList());
         return Sort.by(orderList);
     }
 }

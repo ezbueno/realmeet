@@ -1,5 +1,12 @@
 package br.com.sw2you.realmeet.service;
 
+import static br.com.sw2you.realmeet.domain.entity.Allocation.SORTABLE_FIELDS;
+import static br.com.sw2you.realmeet.util.Constants.ALLOCATIONS_MAX_FILTER_LIMIT;
+import static br.com.sw2you.realmeet.util.DateUtils.DEFAULT_TIMEZONE;
+import static br.com.sw2you.realmeet.util.DateUtils.now;
+import static br.com.sw2you.realmeet.util.PageUtils.newPageable;
+import static java.util.Objects.isNull;
+
 import br.com.sw2you.realmeet.api.model.AllocationDTO;
 import br.com.sw2you.realmeet.api.model.CreateAllocationDTO;
 import br.com.sw2you.realmeet.api.model.UpdateAllocationDTO;
@@ -11,24 +18,15 @@ import br.com.sw2you.realmeet.exception.AllocationCannotBeUpdatedException;
 import br.com.sw2you.realmeet.exception.AllocationNotFoundException;
 import br.com.sw2you.realmeet.exception.RoomNotFoundException;
 import br.com.sw2you.realmeet.mapper.AllocationMapper;
-import br.com.sw2you.realmeet.util.PageUtils;
 import br.com.sw2you.realmeet.validator.AllocationValidator;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static br.com.sw2you.realmeet.domain.entity.Allocation.SORTABLE_FIELDS;
-import static br.com.sw2you.realmeet.util.Constants.ALLOCATIONS_MAX_FILTER_LIMIT;
-import static br.com.sw2you.realmeet.util.DateUtils.DEFAULT_TIMEZONE;
-import static br.com.sw2you.realmeet.util.DateUtils.now;
-import static br.com.sw2you.realmeet.util.PageUtils.newPageable;
-import static java.util.Objects.isNull;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AllocationService {
@@ -97,9 +95,10 @@ public class AllocationService {
         LocalDate startAt,
         LocalDate endAt,
         String orderBy,
-        Integer limit
+        Integer limit,
+        Integer page
     ) {
-        Pageable pageable = newPageable(null, limit, this.maxLimit, orderBy, SORTABLE_FIELDS);
+        Pageable pageable = newPageable(page, limit, this.maxLimit, orderBy, SORTABLE_FIELDS);
 
         var allocations =
             this.allocationRepository.findAllWithFilters(

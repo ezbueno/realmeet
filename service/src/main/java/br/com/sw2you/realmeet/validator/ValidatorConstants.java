@@ -16,7 +16,6 @@ public final class ValidatorConstants {
     public static final String ALLOCATION_END_AT = "endAt";
     public static final String ORDER_BY = "orderBy";
 
-
     public static final int ALLOCATION_SUBJECT_MAX_LENGTH = 60;
     public static final int ALLOCATION_EMPLOYEE_NAME_MAX_LENGTH = 20;
     public static final int ALLOCATION_EMPLOYEE_EMAIL_MAX_LENGTH = 30;

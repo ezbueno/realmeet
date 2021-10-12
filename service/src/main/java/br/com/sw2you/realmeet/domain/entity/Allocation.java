@@ -1,14 +1,13 @@
 package br.com.sw2you.realmeet.domain.entity;
 
-import br.com.sw2you.realmeet.domain.model.Employee;
+import static br.com.sw2you.realmeet.util.DateUtils.now;
+import static java.util.Objects.isNull;
 
-import javax.persistence.*;
+import br.com.sw2you.realmeet.domain.model.Employee;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Objects;
-
-import static br.com.sw2you.realmeet.util.DateUtils.now;
-import static java.util.Objects.isNull;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "allocation")
