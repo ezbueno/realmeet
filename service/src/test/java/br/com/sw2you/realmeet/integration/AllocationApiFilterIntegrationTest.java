@@ -10,12 +10,14 @@ import br.com.sw2you.realmeet.core.BaseIntegrationTest;
 import br.com.sw2you.realmeet.domain.entity.Allocation;
 import br.com.sw2you.realmeet.domain.repository.AllocationRepository;
 import br.com.sw2you.realmeet.domain.repository.RoomRepository;
+import br.com.sw2you.realmeet.service.AllocationService;
 import java.net.MalformedURLException;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.util.ReflectionTestUtils;
 
 class AllocationApiFilterIntegrationTest extends BaseIntegrationTest {
     @Autowired
@@ -26,6 +28,9 @@ class AllocationApiFilterIntegrationTest extends BaseIntegrationTest {
 
     @Autowired
     private AllocationRepository allocationRepository;
+
+    @Autowired
+    private AllocationService allocationService;
 
     final String path = "/v1";
 
@@ -132,11 +137,23 @@ class AllocationApiFilterIntegrationTest extends BaseIntegrationTest {
         assertEquals(allocation2.getId(), allocationDTOList.get(1).getId());
     }
 
+    @Test
+    void testFilterAllocationUsingPagination() {
+        this.persistAllocations(15);
+        ReflectionTestUtils.setField(this.allocationService, "maxLimit", 10);
+
+        var allocationListPage1 = this.allocationApi.listAllocations(null, null, null, null, null, null, 0);
+        assertEquals(10, allocationListPage1.size());
+
+        var allocationListPage2 = this.allocationApi.listAllocations(null, null, null, null, null, null, 1);
+        assertEquals(5, allocationListPage2.size());
+    }
+
     private List<Allocation> persistAllocations(int numberOfAllocations) {
-        var room = newRoomBuilder().build();
+        var room = this.roomRepository.saveAndFlush(newRoomBuilder().build());
 
         return IntStream
-            .range(0, 10)
+            .range(0, numberOfAllocations)
             .mapToObj(
                 i ->
                     this.allocationRepository.saveAndFlush(
