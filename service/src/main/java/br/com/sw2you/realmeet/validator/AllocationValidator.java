@@ -10,8 +10,6 @@ import br.com.sw2you.realmeet.api.model.UpdateAllocationDTO;
 import br.com.sw2you.realmeet.domain.repository.AllocationRepository;
 import java.time.Duration;
 import java.time.OffsetDateTime;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -122,13 +120,7 @@ public class AllocationValidator {
         OffsetDateTime endAt,
         ValidationErrors validationErrors
     ) {
-        this.allocationRepository.findAllWithFilters(
-                null,
-                roomId,
-                now(),
-                null,
-                PageRequest.of(0, Integer.MAX_VALUE, Sort.unsorted())
-            )
+        this.allocationRepository.findAllWithFilters(null, roomId, now(), endAt)
             .stream()
             .filter(a -> isOverlapping(startAt, endAt, a.getStartAt(), a.getEndAt()))
             .findFirst()

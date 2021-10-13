@@ -3,6 +3,7 @@ package br.com.sw2you.realmeet.domain.repository;
 import br.com.sw2you.realmeet.domain.entity.Allocation;
 import java.time.OffsetDateTime;
 import java.util.List;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -20,7 +21,22 @@ public interface AllocationRepository extends JpaRepository<Allocation, Long> {
         @Param(value = "allocationId") Long allocationId,
         @Param(value = "subject") String subject,
         @Param(value = "startAt") OffsetDateTime startAt,
-        @Param(value = "endAt") OffsetDateTime endtAt
+        @Param(value = "endAt") OffsetDateTime endAt
+    );
+
+    @Query(
+        value = "SELECT a FROM Allocation a WHERE " +
+        "(:employeeEmail IS NULL OR a.employee.email = :employeeEmail) AND " +
+        "(:roomId IS NULL OR a.room.id = :roomId) AND " +
+        "(:startAt IS NULL OR a.startAt >= :startAt) AND " +
+        "(:endAt IS NULL OR a.endAt <= :endAt)"
+    )
+    Page<Allocation> findAllWithFilters(
+        @Param(value = "employeeEmail") String employeeEmail,
+        @Param(value = "roomId") Long roomId,
+        @Param(value = "startAt") OffsetDateTime startAt,
+        @Param(value = "endAt") OffsetDateTime endAt,
+        Pageable pageable
     );
 
     @Query(
@@ -34,7 +50,6 @@ public interface AllocationRepository extends JpaRepository<Allocation, Long> {
         @Param(value = "employeeEmail") String employeeEmail,
         @Param(value = "roomId") Long roomId,
         @Param(value = "startAt") OffsetDateTime startAt,
-        @Param(value = "endAt") OffsetDateTime endtAt,
-        Pageable pageable
+        @Param(value = "endAt") OffsetDateTime endAt
     );
 }
