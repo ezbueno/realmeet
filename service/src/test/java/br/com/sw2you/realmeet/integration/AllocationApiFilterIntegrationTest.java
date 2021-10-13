@@ -4,6 +4,7 @@ import static br.com.sw2you.realmeet.util.DateUtils.now;
 import static br.com.sw2you.realmeet.utils.TestConstants.*;
 import static br.com.sw2you.realmeet.utils.TestDataCreator.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import br.com.sw2you.realmeet.api.facade.AllocationApi;
 import br.com.sw2you.realmeet.core.BaseIntegrationTest;
@@ -18,6 +19,7 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.web.client.HttpClientErrorException;
 
 class AllocationApiFilterIntegrationTest extends BaseIntegrationTest {
     @Autowired
@@ -147,6 +149,40 @@ class AllocationApiFilterIntegrationTest extends BaseIntegrationTest {
 
         var allocationListPage2 = this.allocationApi.listAllocations(null, null, null, null, null, null, 1);
         assertEquals(5, allocationListPage2.size());
+    }
+
+    @Test
+    void testFilterAllocationUsingPaginationAndLimit() {
+        this.persistAllocations(25);
+        ReflectionTestUtils.setField(this.allocationService, "maxLimit", 50);
+
+        var allocationListPage1 = this.allocationApi.listAllocations(null, null, null, null, null, 10, 0);
+        assertEquals(10, allocationListPage1.size());
+
+        var allocationListPage2 = this.allocationApi.listAllocations(null, null, null, null, null, 10, 1);
+        assertEquals(10, allocationListPage2.size());
+
+        var allocationListPage3 = this.allocationApi.listAllocations(null, null, null, null, null, 10, 2);
+        assertEquals(5, allocationListPage3.size());
+    }
+
+    @Test
+    void testFilterAllocationOrderByStartAtDesc() {
+        var allocationList = this.persistAllocations(3);
+        var allocationDTOList = this.allocationApi.listAllocations(null, null, null, null, "-startAt", null, null);
+
+        assertEquals(3, allocationDTOList.size());
+        assertEquals(allocationList.get(0).getId(), allocationDTOList.get(2).getId());
+        assertEquals(allocationList.get(1).getId(), allocationDTOList.get(1).getId());
+        assertEquals(allocationList.get(2).getId(), allocationDTOList.get(0).getId());
+    }
+
+    @Test
+    void testFilterAllocationOrderByInvalidField() {
+        assertThrows(
+            HttpClientErrorException.UnprocessableEntity.class,
+            () -> this.allocationApi.listAllocations(null, null, null, null, "invalid", null, null)
+        );
     }
 
     private List<Allocation> persistAllocations(int numberOfAllocations) {
