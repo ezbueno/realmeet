@@ -1,17 +1,11 @@
 package br.com.sw2you.realmeet.unit;
 
 import static br.com.sw2you.realmeet.utils.MapperUtils.allocationMapper;
-import static br.com.sw2you.realmeet.utils.MapperUtils.roomMapper;
-import static br.com.sw2you.realmeet.utils.TestConstants.DEFAULT_ROOM_ID;
 import static br.com.sw2you.realmeet.utils.TestDataCreator.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import br.com.sw2you.realmeet.api.model.CreateAllocationDTO;
 import br.com.sw2you.realmeet.core.BaseUnitTest;
-import br.com.sw2you.realmeet.domain.entity.Room;
 import br.com.sw2you.realmeet.mapper.AllocationMapper;
-import br.com.sw2you.realmeet.utils.MapperUtils;
-import br.com.sw2you.realmeet.utils.TestDataCreator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

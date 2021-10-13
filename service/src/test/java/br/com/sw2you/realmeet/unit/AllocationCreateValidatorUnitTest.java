@@ -1,24 +1,16 @@
 package br.com.sw2you.realmeet.unit;
 
 import static br.com.sw2you.realmeet.util.DateUtils.now;
-import static br.com.sw2you.realmeet.utils.TestConstants.DEFAULT_ROOM_NAME;
-import static br.com.sw2you.realmeet.utils.TestDataCreator.*;
 import static br.com.sw2you.realmeet.utils.TestDataCreator.newCreateAllocationDTO;
 import static br.com.sw2you.realmeet.validator.ValidatorConstants.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.BDDMockito.given;
 
-import br.com.sw2you.realmeet.api.model.CreateRoomDTO;
 import br.com.sw2you.realmeet.core.BaseUnitTest;
 import br.com.sw2you.realmeet.domain.repository.AllocationRepository;
-import br.com.sw2you.realmeet.domain.repository.RoomRepository;
 import br.com.sw2you.realmeet.exception.InvalidRequestException;
-import br.com.sw2you.realmeet.util.DateUtils;
 import br.com.sw2you.realmeet.validator.AllocationValidator;
-import br.com.sw2you.realmeet.validator.RoomValidator;
 import br.com.sw2you.realmeet.validator.ValidationError;
-import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

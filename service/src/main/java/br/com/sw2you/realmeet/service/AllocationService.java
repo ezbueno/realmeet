@@ -79,7 +79,7 @@ public class AllocationService {
             throw new AllocationCannotBeUpdatedException();
         }
 
-        this.allocationValidator.validate(allocationId, updateAllocationDTO);
+        this.allocationValidator.validate(allocationId, allocation.getRoom().getId(), updateAllocationDTO);
 
         this.allocationRepository.updateAllocation(
                 allocationId,
