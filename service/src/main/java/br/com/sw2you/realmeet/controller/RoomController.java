@@ -11,7 +11,6 @@ import br.com.sw2you.realmeet.service.RoomService;
 import br.com.sw2you.realmeet.util.ResponseEntityUtils;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
-import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
