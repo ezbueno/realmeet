@@ -35,9 +35,7 @@ public class VerifyApiKeyFilter extends GenericFilterBean {
 
         var apiKey = httpRequest.getHeader(HEADER_API_KEY);
 
-        if (isBlank(apiKey)) {
-            this.sendUnauthorizedError(httpResponse, apiKey);
-        } else if (this.isValidApiKey(apiKey)) {
+        if (!isBlank(apiKey) && this.isValidApiKey(apiKey)) {
             chain.doFilter(request, response);
         } else {
             this.sendUnauthorizedError(httpResponse, apiKey);
