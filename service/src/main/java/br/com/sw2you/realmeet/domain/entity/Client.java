@@ -2,8 +2,10 @@ package br.com.sw2you.realmeet.domain.entity;
 
 import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@Entity
 public class Client {
     @Id
     @Column(name = "api_key")
