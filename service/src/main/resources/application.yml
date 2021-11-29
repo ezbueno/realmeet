@@ -20,9 +20,9 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
   mail:
     host: smtp.gmail.com
-    username: ezandro.developer@gmail.com
-    password: todkczechvlnlixj
-    from: ezandro.developer@gmail.com
+    username: ezandro.teste@teste.com
+    password: teste
+    from: ezandro.teste@teste.com
     properties:
       mail.transport.protocol: smtp
       mail.smtp.port: 587
@@ -43,3 +43,14 @@ logging:
 realmeet:
   allocations:
     maxFilterLimit: 50
+  email:
+    templates:
+      allocationCreated:
+        subject: Criado novo agendamento de sala
+        templateName: allocation-created.html
+      allocationUpdated:
+        subject: Alterado o agendamento de sala
+        templateName: allocation-updated.html
+      allocationDeleted:
+        subject: Excluído o agendamento de sala
+        templateName: allocation-deleted.html
