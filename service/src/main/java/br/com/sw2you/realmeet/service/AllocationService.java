@@ -33,6 +33,7 @@ public class AllocationService {
     private final RoomRepository roomRepository;
     private final AllocationRepository allocationRepository;
     private final AllocationValidator allocationValidator;
+    private final NotificationService notificationService;
     private final AllocationMapper allocationMapper;
     private final int maxLimit;
 
@@ -40,12 +41,14 @@ public class AllocationService {
         RoomRepository roomRepository,
         AllocationRepository allocationRepository,
         AllocationValidator allocationValidator,
+        NotificationService notificationService,
         AllocationMapper allocationMapper,
         @Value(ALLOCATIONS_MAX_FILTER_LIMIT) int maxLimit
     ) {
         this.roomRepository = roomRepository;
         this.allocationRepository = allocationRepository;
         this.allocationValidator = allocationValidator;
+        this.notificationService = notificationService;
         this.allocationMapper = allocationMapper;
         this.maxLimit = maxLimit;
     }
@@ -58,6 +61,7 @@ public class AllocationService {
 
         var allocation = this.allocationMapper.fromCreateAllocationDTOToEntity(createAllocationDTO, room);
         this.allocationRepository.save(allocation);
+        this.notificationService.notifyAllocationCreated(allocation);
         return this.allocationMapper.fromEntityToAllocationDTO(allocation);
     }
 
@@ -69,6 +73,7 @@ public class AllocationService {
         }
 
         this.allocationRepository.delete(allocation);
+        this.notificationService.notifyAllocationDeleted(allocation);
     }
 
     @Transactional
@@ -87,6 +92,8 @@ public class AllocationService {
                 updateAllocationDTO.getStartAt(),
                 updateAllocationDTO.getEndAt()
             );
+
+        this.notificationService.notifyAllocationUpdated(this.getAllocationOrThrow(allocationId));
     }
 
     public List<AllocationDTO> listAllocations(

@@ -34,11 +34,11 @@ class AllocationApiFilterIntegrationTest extends BaseIntegrationTest {
     @Autowired
     private AllocationService allocationService;
 
-    final String path = "/v1";
+    private static final String PATH = "/v1";
 
     @Override
     protected void setupEach() throws MalformedURLException {
-        this.setLocalHostBasePath(this.allocationApi.getApiClient(), this.path);
+        this.setLocalHostBasePath(this.allocationApi.getApiClient(), PATH);
     }
 
     @Test

@@ -9,9 +9,11 @@ import br.com.sw2you.realmeet.api.facade.AllocationApi;
 import br.com.sw2you.realmeet.core.BaseIntegrationTest;
 import br.com.sw2you.realmeet.domain.repository.AllocationRepository;
 import br.com.sw2you.realmeet.domain.repository.RoomRepository;
+import br.com.sw2you.realmeet.email.EmailSender;
 import java.net.MalformedURLException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.web.client.HttpClientErrorException;
 
 class AllocationApiIntegrationTest extends BaseIntegrationTest {
@@ -24,11 +26,14 @@ class AllocationApiIntegrationTest extends BaseIntegrationTest {
     @Autowired
     private AllocationRepository allocationRepository;
 
-    final String path = "/v1";
+    @MockBean
+    private EmailSender emailSender;
+
+    private static final String PATH = "/v1";
 
     @Override
     protected void setupEach() throws MalformedURLException {
-        this.setLocalHostBasePath(this.allocationApi.getApiClient(), this.path);
+        this.setLocalHostBasePath(this.allocationApi.getApiClient(), PATH);
     }
 
     @Test

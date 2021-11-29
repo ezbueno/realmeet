@@ -23,11 +23,11 @@ class RoomApiIntegrationTest extends BaseIntegrationTest {
     @Autowired
     private RoomRepository roomRepository;
 
-    private final String path = "/v1";
+    private static final String PATH = "/v1";
 
     @Override
     protected void setupEach() throws MalformedURLException {
-        this.setLocalHostBasePath(this.roomApi.getApiClient(), this.path);
+        this.setLocalHostBasePath(this.roomApi.getApiClient(), PATH);
     }
 
     @Test
