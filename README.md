@@ -16,4 +16,5 @@
 * 12 - Autenticando os endpoints do RealMeet
 * 13 - Criando a infraestrutura de envio de e-mails
 * 14 - Enviando notificações por e-mail
-* 15 - [EXTRA] Expressões Lambda & Stream API
+* 15 - Gerando relatórios e enviando por e-mail
+* 16 - [EXTRA] Expressões Lambda & Stream API
