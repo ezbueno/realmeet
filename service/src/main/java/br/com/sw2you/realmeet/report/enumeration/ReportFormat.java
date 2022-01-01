@@ -13,4 +13,12 @@ public enum ReportFormat {
     public String getContentType() {
         return this.contentType;
     }
+
+    public String getExtension() {
+        return "." + this.name().toLowerCase();
+    }
+
+    public static ReportFormat defaultReport() {
+        return PDF;
+    }
 }
