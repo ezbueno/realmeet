@@ -14,11 +14,11 @@ public class AllocationReportData extends AbstractReportData {
     }
 
     public LocalDate getDateFrom() {
-        return dateFrom;
+        return this.dateFrom;
     }
 
     public LocalDate getDateTo() {
-        return dateTo;
+        return this.dateTo;
     }
 
     @Override
@@ -27,17 +27,17 @@ public class AllocationReportData extends AbstractReportData {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         AllocationReportData that = (AllocationReportData) o;
-        return Objects.equals(dateFrom, that.dateFrom) && Objects.equals(dateTo, that.dateTo);
+        return Objects.equals(this.dateFrom, that.dateFrom) && Objects.equals(this.dateTo, that.dateTo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), dateFrom, dateTo);
+        return Objects.hash(super.hashCode(), this.dateFrom, this.dateTo);
     }
 
     @Override
     public String toString() {
-        return "AllocationDataReport{" + "dateFrom=" + dateFrom + ", dateTo=" + dateTo + '}';
+        return "AllocationDataReport{" + "dateFrom=" + this.dateFrom + ", dateTo=" + this.dateTo + '}';
     }
 
     public static Builder newBuilder() {

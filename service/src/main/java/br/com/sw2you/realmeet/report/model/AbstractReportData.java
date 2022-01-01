@@ -10,7 +10,7 @@ public abstract class AbstractReportData {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     @Override
@@ -18,16 +18,16 @@ public abstract class AbstractReportData {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AbstractReportData that = (AbstractReportData) o;
-        return Objects.equals(email, that.email);
+        return Objects.equals(this.email, that.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(email);
+        return Objects.hash(this.email);
     }
 
     @Override
     public String toString() {
-        return "AbstractDataReport{" + "email='" + email + '\'' + '}';
+        return "AbstractDataReport{" + "email='" + this.email + '\'' + '}';
     }
 }

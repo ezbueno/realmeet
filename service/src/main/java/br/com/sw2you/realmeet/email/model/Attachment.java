@@ -15,15 +15,15 @@ public class Attachment {
     }
 
     public InputStream getInputStream() {
-        return inputStream;
+        return this.inputStream;
     }
 
     public String getContentType() {
-        return contentType;
+        return this.contentType;
     }
 
     public String getFileName() {
-        return fileName;
+        return this.fileName;
     }
 
     @Override
@@ -32,15 +32,15 @@ public class Attachment {
         if (o == null || getClass() != o.getClass()) return false;
         Attachment that = (Attachment) o;
         return (
-            Objects.equals(inputStream, that.inputStream) &&
-            Objects.equals(contentType, that.contentType) &&
-            Objects.equals(fileName, that.fileName)
+            Objects.equals(this.inputStream, that.inputStream) &&
+            Objects.equals(this.contentType, that.contentType) &&
+            Objects.equals(this.fileName, that.fileName)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(inputStream, contentType, fileName);
+        return Objects.hash(this.inputStream, this.contentType, this.fileName);
     }
 
     @Override
@@ -48,12 +48,12 @@ public class Attachment {
         return (
             "Attachment{" +
             "inputStream=" +
-            inputStream +
+            this.inputStream +
             ", contentType='" +
-            contentType +
+            this.contentType +
             '\'' +
             ", fileName='" +
-            fileName +
+            this.fileName +
             '\'' +
             '}'
         );

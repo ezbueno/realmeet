@@ -38,19 +38,19 @@ public class Room {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public Integer getSeats() {
-        return seats;
+        return this.seats;
     }
 
     public Boolean getActive() {
-        return active;
+        return this.active;
     }
 
     @Override
@@ -59,21 +59,33 @@ public class Room {
         if (o == null || getClass() != o.getClass()) return false;
         Room room = (Room) o;
         return (
-            Objects.equals(id, room.id) &&
-            Objects.equals(name, room.name) &&
-            Objects.equals(seats, room.seats) &&
-            Objects.equals(active, room.active)
+            Objects.equals(this.id, room.id) &&
+            Objects.equals(this.name, room.name) &&
+            Objects.equals(this.seats, room.seats) &&
+            Objects.equals(this.active, room.active)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, seats, active);
+        return Objects.hash(this.id, this.name, this.seats, this.active);
     }
 
     @Override
     public String toString() {
-        return "Room{" + "id=" + id + ", name='" + name + '\'' + ", seats=" + seats + ", active=" + active + '}';
+        return (
+            "Room{" +
+            "id=" +
+            this.id +
+            ", name='" +
+            this.name +
+            '\'' +
+            ", seats=" +
+            this.seats +
+            ", active=" +
+            this.active +
+            '}'
+        );
     }
 
     public static Builder newBuilder() {
@@ -109,7 +121,7 @@ public class Room {
         }
 
         public Room build() {
-            return new Room(id, name, seats, active);
+            return new Room(this.id, this.name, this.seats, this.active);
         }
     }
 }

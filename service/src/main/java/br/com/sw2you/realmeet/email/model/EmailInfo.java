@@ -26,35 +26,35 @@ public class EmailInfo {
     }
 
     public String getFrom() {
-        return from;
+        return this.from;
     }
 
     public List<String> getTo() {
-        return to;
+        return this.to;
     }
 
     public List<String> getCc() {
-        return cc;
+        return this.cc;
     }
 
     public List<String> getBcc() {
-        return bcc;
+        return this.bcc;
     }
 
     public String getSubject() {
-        return subject;
+        return this.subject;
     }
 
     public List<Attachment> getAttachments() {
-        return attachments;
+        return this.attachments;
     }
 
     public String getTemplate() {
-        return template;
+        return this.template;
     }
 
     public Map<String, Object> getTemplateData() {
-        return templateData;
+        return this.templateData;
     }
 
     @Override
@@ -63,20 +63,29 @@ public class EmailInfo {
         if (o == null || getClass() != o.getClass()) return false;
         EmailInfo emailInfo = (EmailInfo) o;
         return (
-            Objects.equals(from, emailInfo.from) &&
-            Objects.equals(to, emailInfo.to) &&
-            Objects.equals(cc, emailInfo.cc) &&
-            Objects.equals(bcc, emailInfo.bcc) &&
-            Objects.equals(subject, emailInfo.subject) &&
-            Objects.equals(attachments, emailInfo.attachments) &&
-            Objects.equals(template, emailInfo.template) &&
-            Objects.equals(templateData, emailInfo.templateData)
+            Objects.equals(this.from, emailInfo.from) &&
+            Objects.equals(this.to, emailInfo.to) &&
+            Objects.equals(this.cc, emailInfo.cc) &&
+            Objects.equals(this.bcc, emailInfo.bcc) &&
+            Objects.equals(this.subject, emailInfo.subject) &&
+            Objects.equals(this.attachments, emailInfo.attachments) &&
+            Objects.equals(this.template, emailInfo.template) &&
+            Objects.equals(this.templateData, emailInfo.templateData)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(from, to, cc, bcc, subject, attachments, template, templateData);
+        return Objects.hash(
+            this.from,
+            this.to,
+            this.cc,
+            this.bcc,
+            this.subject,
+            this.attachments,
+            this.template,
+            this.templateData
+        );
     }
 
     @Override
@@ -84,24 +93,24 @@ public class EmailInfo {
         return (
             "EmailInfo{" +
             "from='" +
-            from +
+            this.from +
             '\'' +
             ", to=" +
-            to +
+            this.to +
             ", cc=" +
-            cc +
+            this.cc +
             ", bcc=" +
-            bcc +
+            this.bcc +
             ", subject='" +
-            subject +
+            this.subject +
             '\'' +
             ", attachments=" +
-            attachments +
+            this.attachments +
             ", template='" +
-            template +
+            this.template +
             '\'' +
             ", templateData=" +
-            templateData +
+            this.templateData +
             '}'
         );
     }

@@ -33,22 +33,22 @@ public class EmailConfigProperties {
     }
 
     public String getHost() {
-        return host;
+        return this.host;
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public String getFrom() {
-        return from;
+        return this.from;
     }
 
     public String getProperty(String name) {
-        return properties.get(name);
+        return this.properties.get(name);
     }
 }

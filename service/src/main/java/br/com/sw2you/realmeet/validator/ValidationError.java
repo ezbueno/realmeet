@@ -12,11 +12,11 @@ public class ValidationError {
     }
 
     public String getField() {
-        return field;
+        return this.field;
     }
 
     public String getErrorCode() {
-        return errorCode;
+        return this.errorCode;
     }
 
     @Override
@@ -24,16 +24,16 @@ public class ValidationError {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ValidationError that = (ValidationError) o;
-        return Objects.equals(field, that.field) && Objects.equals(errorCode, that.errorCode);
+        return Objects.equals(this.field, that.field) && Objects.equals(this.errorCode, that.errorCode);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(field, errorCode);
+        return Objects.hash(this.field, this.errorCode);
     }
 
     @Override
     public String toString() {
-        return "ValidationError{" + "field='" + field + '\'' + ", errorCode='" + errorCode + '\'' + '}';
+        return "ValidationError{" + "field='" + this.field + '\'' + ", errorCode='" + this.errorCode + '\'' + '}';
     }
 }

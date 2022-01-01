@@ -67,35 +67,35 @@ public class Allocation {
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public Room getRoom() {
-        return room;
+        return this.room;
     }
 
     public Employee getEmployee() {
-        return employee;
+        return this.employee;
     }
 
     public String getSubject() {
-        return subject;
+        return this.subject;
     }
 
     public OffsetDateTime getStartAt() {
-        return startAt;
+        return this.startAt;
     }
 
     public OffsetDateTime getEndAt() {
-        return endAt;
+        return this.endAt;
     }
 
     public OffsetDateTime getCreatedAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     public OffsetDateTime getUpdatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     @Override
@@ -104,20 +104,29 @@ public class Allocation {
         if (o == null || getClass() != o.getClass()) return false;
         Allocation that = (Allocation) o;
         return (
-            Objects.equals(id, that.id) &&
-            Objects.equals(room, that.room) &&
-            Objects.equals(employee, that.employee) &&
-            Objects.equals(subject, that.subject) &&
-            Objects.equals(startAt, that.startAt) &&
-            Objects.equals(endAt, that.endAt) &&
-            Objects.equals(createdAt, that.createdAt) &&
-            Objects.equals(updatedAt, that.updatedAt)
+            Objects.equals(this.id, that.id) &&
+            Objects.equals(this.room, that.room) &&
+            Objects.equals(this.employee, that.employee) &&
+            Objects.equals(this.subject, that.subject) &&
+            Objects.equals(this.startAt, that.startAt) &&
+            Objects.equals(this.endAt, that.endAt) &&
+            Objects.equals(this.createdAt, that.createdAt) &&
+            Objects.equals(this.updatedAt, that.updatedAt)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, room, employee, subject, startAt, endAt, createdAt, updatedAt);
+        return Objects.hash(
+            this.id,
+            this.room,
+            this.employee,
+            this.subject,
+            this.startAt,
+            this.endAt,
+            this.createdAt,
+            this.updatedAt
+        );
     }
 
     @Override
@@ -125,22 +134,22 @@ public class Allocation {
         return (
             "Allocation{" +
             "id=" +
-            id +
+            this.id +
             ", room=" +
-            room +
+            this.room +
             ", employee=" +
-            employee +
+            this.employee +
             ", subject='" +
-            subject +
+            this.subject +
             '\'' +
             ", startAt=" +
-            startAt +
+            this.startAt +
             ", endAt=" +
-            endAt +
+            this.endAt +
             ", createdAt=" +
-            createdAt +
+            this.createdAt +
             ", updatedAt=" +
-            updatedAt +
+            this.updatedAt +
             '}'
         );
     }

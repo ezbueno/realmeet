@@ -20,11 +20,11 @@ public class Employee {
     public Employee() {}
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     @Override
@@ -32,17 +32,17 @@ public class Employee {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(name, employee.name) && Objects.equals(email, employee.email);
+        return Objects.equals(this.name, employee.name) && Objects.equals(this.email, employee.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, email);
+        return Objects.hash(this.name, this.email);
     }
 
     @Override
     public String toString() {
-        return "Employee{" + "name='" + name + '\'' + ", email='" + email + '\'' + '}';
+        return "Employee{" + "name='" + this.name + '\'' + ", email='" + this.email + '\'' + '}';
     }
 
     public static Builder newBuilder() {

@@ -26,15 +26,15 @@ public class Client {
     }
 
     public String getApiKey() {
-        return apiKey;
+        return this.apiKey;
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public Boolean getActive() {
-        return active;
+        return this.active;
     }
 
     @Override
@@ -43,21 +43,30 @@ public class Client {
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
         return (
-            Objects.equals(apiKey, client.apiKey) &&
-            Objects.equals(description, client.description) &&
-            Objects.equals(active, client.active)
+            Objects.equals(this.apiKey, client.apiKey) &&
+            Objects.equals(this.description, client.description) &&
+            Objects.equals(this.active, client.active)
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(apiKey, description, active);
+        return Objects.hash(this.apiKey, this.description, this.active);
     }
 
     @Override
     public String toString() {
         return (
-            "Client{" + "apiKey='" + apiKey + '\'' + ", description='" + description + '\'' + ", active=" + active + '}'
+            "Client{" +
+            "apiKey='" +
+            this.apiKey +
+            '\'' +
+            ", description='" +
+            this.description +
+            '\'' +
+            ", active=" +
+            this.active +
+            '}'
         );
     }
 

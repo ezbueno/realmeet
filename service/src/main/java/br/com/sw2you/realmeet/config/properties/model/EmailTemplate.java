@@ -12,11 +12,11 @@ public class EmailTemplate {
     }
 
     public String getSubject() {
-        return subject;
+        return this.subject;
     }
 
     public String getTemplateName() {
-        return templateName;
+        return this.templateName;
     }
 
     @Override
@@ -24,16 +24,18 @@ public class EmailTemplate {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EmailTemplate that = (EmailTemplate) o;
-        return Objects.equals(subject, that.subject) && Objects.equals(templateName, that.templateName);
+        return Objects.equals(this.subject, that.subject) && Objects.equals(this.templateName, that.templateName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(subject, templateName);
+        return Objects.hash(this.subject, this.templateName);
     }
 
     @Override
     public String toString() {
-        return "EmailTemplate{" + "subject='" + subject + '\'' + ", templateName='" + templateName + '\'' + '}';
+        return (
+            "EmailTemplate{" + "subject='" + this.subject + '\'' + ", templateName='" + this.templateName + '\'' + '}'
+        );
     }
 }

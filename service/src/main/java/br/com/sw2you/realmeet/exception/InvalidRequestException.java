@@ -16,6 +16,6 @@ public class InvalidRequestException extends RuntimeException {
     }
 
     public ValidationErrors getValidationErrors() {
-        return validationErrors;
+        return this.validationErrors;
     }
 }
