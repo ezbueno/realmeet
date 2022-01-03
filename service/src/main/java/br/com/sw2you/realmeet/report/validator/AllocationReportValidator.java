@@ -26,13 +26,15 @@ public class AllocationReportValidator extends AbstractReportValidator {
         validateRequired(allocationReportData.getDateFrom(), DATE_FROM, validationErrors);
         validateRequired(allocationReportData.getDateTo(), DATE_TO, validationErrors);
 
-        if (allocationReportData.getDateFrom().isAfter((allocationReportData.getDateTo()))) {
-            validationErrors.add(DATE_FROM, DATE_FROM + INCONSISTENT);
-        } else if (
-            Period.between(allocationReportData.getDateFrom(), allocationReportData.getDateTo()).getMonths() >
-            maxMonthInterval
-        ) {
-            validationErrors.add(DATE_TO, DATE_TO + EXCEEDS_INTERVAL);
+        if (!validationErrors.hasErrors()) {
+            if (allocationReportData.getDateFrom().isAfter((allocationReportData.getDateTo()))) {
+                validationErrors.add(DATE_FROM, DATE_FROM + INCONSISTENT);
+            } else if (
+                Period.between(allocationReportData.getDateFrom(), allocationReportData.getDateTo()).getMonths() >
+                maxMonthInterval
+            ) {
+                validationErrors.add(DATE_TO, DATE_TO + EXCEEDS_INTERVAL);
+            }
         }
     }
 }
