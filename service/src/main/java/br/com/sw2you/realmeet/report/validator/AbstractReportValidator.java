@@ -1,11 +1,11 @@
 package br.com.sw2you.realmeet.report.validator;
 
-import br.com.sw2you.realmeet.report.model.AbstractReportData;
-import br.com.sw2you.realmeet.validator.ValidationErrors;
-
 import static br.com.sw2you.realmeet.validator.ValidatorConstants.*;
 import static br.com.sw2you.realmeet.validator.ValidatorUtils.thrownOnError;
 import static br.com.sw2you.realmeet.validator.ValidatorUtils.validateRequired;
+
+import br.com.sw2you.realmeet.report.model.AbstractReportData;
+import br.com.sw2you.realmeet.validator.ValidationErrors;
 
 public abstract class AbstractReportValidator {
 
