@@ -40,6 +40,7 @@ public class ReportCreationService {
     ) {
         var reportFormat = ReportFormat.fromString(reportFormatStr);
         var reportHandler = this.reportHandlerResolver.resolveReportHandler(reportHandlerType);
+        reportHandler.getReportValidator().validate(reportData);
         var bytes = reportHandler.createReportBytes(reportData, reportFormat);
 
         this.reportDispatcherService.dispatch(
