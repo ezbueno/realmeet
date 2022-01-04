@@ -20,9 +20,9 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
   mail:
     host: smtp.gmail.com
-    username: ezandro.teste@teste.com
-    password: teste
-    from: ezandro.teste@teste.com
+    username: ezandro.developer@gmail.com
+    password: rmjdmiwrakbrdwpj
+    from: ezandro.developer@gmail.com
     properties:
       mail.transport.protocol: smtp
       mail.smtp.port: 587
