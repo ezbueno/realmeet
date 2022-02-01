@@ -20,14 +20,16 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
   mail:
     host: smtp.gmail.com
-    username: x.x@x.com
-    password: xxx
-    from: x.x@x.com
+    username: ezandro.developer@gmail.com
+    password: rmjdmiwrakbrdwpj
+    from: ezandro.developer@gmail.com
     properties:
       mail.transport.protocol: smtp
       mail.smtp.port: 587
       mail.smtp.auth: true
       mail.smtp.starttls.enable: true
+  flyway:
+    locations: classpath:/db/migration/mysql
 
 # =================================
 # = Logging

@@ -1,7 +1,10 @@
-# =================================
+# =============================
 # = Spring
-# =================================
+# =============================
 spring:
   datasource:
-    url: jdbc:mysql://db-realmeet.cu4i8wlghyu4.sa-east-1.rds.amazonaws.com:3306/realmeet?&serverTimezone=UTC&useSSL=false
-    username: admin
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgres://cbdirlyvprbyfm:5ffe32715915a7efa4d5d43a9005a4229529f9a10ee9e1e9b4deb62f072d37c1@ec2-3-232-163-23.compute-1.amazonaws.com:5432/ders3sc31g3kvv
+    username: cbdirlyvprbyfm
+  flyway:
+    locations: classpath:/db/migration/postgresql
