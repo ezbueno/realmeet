@@ -17,4 +17,5 @@
 * 13 - Criando a infraestrutura de envio de e-mails
 * 14 - Enviando notificações por e-mail
 * 15 - Gerando relatórios e enviando por e-mail
-* 16 - [EXTRA] Expressões Lambda & Stream API
+* 16 - Fazendo o deploy do RealMeet na plataforma Heroku
+* 17 - [EXTRA] Expressões Lambda & Stream API
